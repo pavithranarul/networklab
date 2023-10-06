@@ -1,6 +1,6 @@
 #send packets one by one 
-set ns [new Simulator] set 
-n0 [$ns node]
+set ns [new Simulator] 
+set n0 [$ns node]
 set n1 [$ns node]
 set n2 [$ns node] 
 set n3 [$ns node] 
@@ -25,8 +25,8 @@ $ns at 0.0 "$n3 label SYS3"
 $ns at 0.0 "$n4 label SYS4"
 $ns at 0.0 "$n5 label SYS5" 
 set nf [open goback.nam w]
-$ns namtrace-all $nf set 
-f [open goback.tr w]
+$ns namtrace-all $nf 
+set f [open goback.tr w]
 $ns trace-all $f
 $ns duplex-link $n0 $n2 1Mb 20ms DropTail
 $ns duplex-link-op $n0 $n2 orient right-down
@@ -40,7 +40,7 @@ $ns duplex-link-op $n3 $n4 orient right-up
 $ns duplex-link $n3 $n5 1Mb 20ms DropTail
 $ns duplex-link-op $n3 $n5 orient right-down 
 Agent/TCP set_nam_tracevar_true
-Set tcp [new Agent/TCP]
+set tcp [new Agent/TCP]
 $tcp set fid 1
 $ns attach-agent $n1 $tcp
 set sink [new Agent/TCPSink]
@@ -73,3 +73,4 @@ puts "filtering..."
 exec nam goback.nam & 
 exit 0
 }
+$ns run
